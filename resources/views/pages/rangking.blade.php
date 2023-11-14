@@ -19,9 +19,16 @@
             {{ session('success') }}
         </div>
     @endif
-    <div class="row justify-content-center">
-        <div class="col-5">
-            <form action="{{ route('result.index') }}" method="GET">
+    <form action="{{ route('view.rangking') }}" method="GET">
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <select class="form-select" aria-label="Default select example" name="type">
+                    <option value="saw" {{ $type == 'saw' ? 'selected' : '' }}>SAW</option>
+                    <option value="wp" {{ $type == 'wp' ? 'selected' : '' }}>WP</option>
+                    <option value="topsis" {{ $type == 'topsis' ? 'selected' : '' }}>TOPSIS</option>
+                </select>
+            </div>
+            <div class="col-5">
                 @csrf
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
@@ -29,26 +36,64 @@
                         aria-describedby="inputGroup-sizing-default" placeholder="search by name">
                     <button type="input" class="btn btn-dark ms-2"><i class="bi bi-search"></i></button>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
     <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Alternatif ID</th>
-                <th scope="col">Alternatif Name</th>
-                <th scope="col">Rangking</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($datas as $index => $data)
+        @if ($type == 'saw')
+            <thead>
                 <tr>
-                    <td>{{ $data->alternatif_id }}</td>
-                    <td>{{ $data->alternatif_name }}</td>
-                    <td>{{ $data->rangking }}</td>
+                    <th scope="col">Alternatif ID</th>
+                    <th scope="col">Alternatif Name</th>
+                    <th scope="col">Rangking</th>
                 </tr>
-            @endforeach
-        </tbody>
+            </thead>
+            <tbody>
+                @foreach ($datas as $index => $data)
+                    <tr>
+                        <td>{{ $data->alternatif_id }}</td>
+                        <td>{{ $data->alternatif_name }}</td>
+                        <td>{{ $data->rangking }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        @elseif ($type == 'wp')
+            <thead>
+                <tr>
+                    <th scope="col">Alternatif ID</th>
+                    <th scope="col">Alternatif Name</th>
+                    <th scope="col">Nilai V</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($datas as $index => $data)
+                    <tr>
+                        <td>{{ $data->alternatif_id }}</td>
+                        <td>{{ $data->alternatif_name }}</td>
+                        <td>{{ $data->nilaiv }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        @elseif ($type == 'topsis')
+            <thead>
+                <tr>
+                    <th scope="col">Alternatif ID</th>
+                    <th scope="col">D Plus</th>
+                    <th scope="col">D Min</th>
+                    <th scope="col">Nilai V</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($datas as $index => $data)
+                    <tr>
+                        <td>{{ $data->alternatif_id }}</td>
+                        <td>{{ $data->dplus }}</td>
+                        <td>{{ $data->dmin }}</td>
+                        <td>{{ $data->nilaiv ?? '-' }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        @endif
     </table>
 @endsection
 

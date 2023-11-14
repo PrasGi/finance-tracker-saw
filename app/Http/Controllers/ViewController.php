@@ -35,10 +35,18 @@ class ViewController extends Controller
         return view('pages.prarangking', compact(['datas']));
     }
 
-    public function viewRangking()
+    public function viewRangking(Request $request)
     {
-        $datas = DB::table('view_vrangking')->get();
+        $type = $request->type ?? 'saw';
 
-        return view('pages.rangking', compact(['datas']));
+        if ($type == 'saw') {
+            $datas = DB::table('view_vrangking')->get();
+        } else if ($type == 'wp') {
+            $datas = DB::table('wp_nilaiv')->get();
+        } else if ($type == 'topsis') {
+            $datas = DB::table('topsis_nilaiv')->get();
+        }
+
+        return view('pages.rangking', compact(['datas', 'type']));
     }
 }
