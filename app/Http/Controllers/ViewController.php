@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use App\Models\Kriteria;
 use App\Models\Result;
 use Illuminate\Http\Request;
@@ -45,8 +46,16 @@ class ViewController extends Controller
             $datas = DB::table('wp_nilaiv')->get();
         } else if ($type == 'topsis') {
             $datas = DB::table('topsis_nilaiv')->get();
+        } else if ($type == "multimoora") {
+            $datas = DB::table('multimoora_4')->get();
         }
 
-        return view('pages.rangking', compact(['datas', 'type']));
+        $historyModel = new History();
+        $historyModel->setHistory();
+
+        $dataHistory = $historyModel->with('historyDetails')->get();
+        // dd($dataHistory);
+
+        return view('pages.rangking', compact(['datas', 'type', 'dataHistory']));
     }
 }

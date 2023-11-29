@@ -1,5 +1,5 @@
 <!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
+<header id="header" class="header fixed-top d-flex align-items-center shadow">
 
     <div class="d-flex align-items-center justify-content-between">
         <i class="bi bi-list toggle-sidebar-btn"></i>

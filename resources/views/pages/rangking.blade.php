@@ -26,6 +26,7 @@
                     <option value="saw" {{ $type == 'saw' ? 'selected' : '' }}>SAW</option>
                     <option value="wp" {{ $type == 'wp' ? 'selected' : '' }}>WP</option>
                     <option value="topsis" {{ $type == 'topsis' ? 'selected' : '' }}>TOPSIS</option>
+                    <option value="multimoora" {{ $type == 'multimoora' ? 'selected' : '' }}>Multimoora</option>
                 </select>
             </div>
             <div class="col-5">
@@ -93,7 +94,47 @@
                     </tr>
                 @endforeach
             </tbody>
+        @elseif ($type == 'multimoora')
+            <thead>
+                <tr>
+                    <th scope="col">Alternatif ID</th>
+                    <th scope="col">Hasil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($datas as $index => $data)
+                    <tr>
+                        <td>{{ $data->alternatif_id }}</td>
+                        <td>{{ $data->hasil ?? '-' }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
         @endif
+    </table>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">History ID</th>
+                <th scope="col">Name Alternatif</th>
+                <th scope="col">Name Kriteria</th>
+                <th scope="col">Bobot Value</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($dataHistory as $history)
+                @foreach ($history->historyDetails as $data)
+                    <tr>
+                        <td>{{ $history->id }}</td>
+                        <td>{{ $data->alternatif->name }}</td>
+                        <td>{{ $data->kriteria->name }}</td>
+                        <td>{{ $data->bobot->value }}</td>
+                        <td>{{ $history->result_value }}</td>
+                    </tr>
+                @endforeach
+            @endforeach
+        </tbody>
     </table>
 @endsection
 

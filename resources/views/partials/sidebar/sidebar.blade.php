@@ -1,5 +1,5 @@
 <!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar shadow-lg">
 
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
@@ -41,7 +41,7 @@
             </a>
         </li>
 
-        <li class="nav-heading">view</li>
+        {{-- <li class="nav-heading">view</li>
 
         <li class="nav-item">
             <a class="nav-link {{ Request::route()->getName() == 'view.matrixKeputusan' ? 'active' : '' }} collapsed"
@@ -77,7 +77,7 @@
                 <i class="bi bi-eye"></i>
                 <span>Rangking</span>
             </a>
-        </li>
+        </li> --}}
     </ul>
 
 </aside><!-- End Sidebar-->

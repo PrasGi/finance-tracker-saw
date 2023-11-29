@@ -32,6 +32,7 @@ Route::post('/bobot', [BobotController::class, 'store'])->name('bobot.store');
 
 Route::get('/result', [ResultController::class, 'index'])->name('result.index');
 Route::post('/result', [ResultController::class, 'store'])->name('result.store');
+Route::delete('/result/{id}', [ResultController::class, 'destroy'])->name('result.destroy');
 
 Route::get('/matrix-keputusan', [ViewController::class, 'viewMatrixKeputusan'])->name('view.matrixKeputusan');
 Route::get('/maximum-value-of-kriteria', [ViewController::class, 'maximumValue'])->name('view.maximumValue');
