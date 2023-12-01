@@ -31,10 +31,10 @@
                 </div>
             </form>
         </div>
-        <div class="col-2">
+        {{-- <div class="col-2">
             <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProvinceModal">Add
                 Bobot</button>
-        </div>
+        </div> --}}
     </div>
     <table class="table table-striped">
         <thead>

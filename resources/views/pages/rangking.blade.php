@@ -21,14 +21,14 @@
     @endif
     <form action="{{ route('view.rangking') }}" method="GET">
         <div class="row justify-content-center">
-            <div class="col-2">
+            {{-- <div class="col-2">
                 <select class="form-select" aria-label="Default select example" name="type">
                     <option value="saw" {{ $type == 'saw' ? 'selected' : '' }}>SAW</option>
                     <option value="wp" {{ $type == 'wp' ? 'selected' : '' }}>WP</option>
                     <option value="topsis" {{ $type == 'topsis' ? 'selected' : '' }}>TOPSIS</option>
                     <option value="multimoora" {{ $type == 'multimoora' ? 'selected' : '' }}>Multimoora</option>
                 </select>
-            </div>
+            </div> --}}
             <div class="col-5">
                 @csrf
                 <div class="input-group mb-3">
@@ -40,7 +40,14 @@
             </div>
         </div>
     </form>
-    <table class="table table-striped">
+
+    <br>
+    <div class="alert alert-success text-center" role="alert">
+        result calculate
+    </div>
+    <br>
+
+    <table class="table table-striped shadow-lg">
         @if ($type == 'saw')
             <thead>
                 <tr>
@@ -112,7 +119,13 @@
         @endif
     </table>
 
-    <table class="table table-striped">
+    <br>
+    <div class="alert alert-dark text-center" role="alert">
+        the histories
+    </div>
+    <br>
+
+    <table class="table table-striped shadow-lg">
         <thead>
             <tr>
                 <th scope="col">History ID</th>

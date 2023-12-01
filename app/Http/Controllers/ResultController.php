@@ -20,17 +20,17 @@ class ResultController extends Controller
         $alternatifs = Alternatif::all();
         $bobots = Bobot::all();
 
-        return view('pages.result', compact(['datas', 'alternatifs', 'bobots']));
+        return view('pages.result-v2', compact(['datas', 'alternatifs', 'bobots']));
     }
 
     public function store(Request $request)
     {
 
-        foreach ($request->bobot_id as $bobot_id) {
+        foreach ($request->value as $index => $value) {
             Result::create([
-                'alternatif_id' => $request->alternatif_id,
-                'bobot_id' => $bobot_id,
-                'value' => $request->value[$bobot_id],
+                'alternatif_id' => $index + 1,
+                'bobot_id' => $request->bobot_id,
+                'value' => $value,
             ]);
         }
 
